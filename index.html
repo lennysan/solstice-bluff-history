@@ -14,6 +14,7 @@
       --line: #d9d2c5;
       --accent: #2c5f6e;
       --accent-soft: #e8f1f3;
+      --warn-bg: #f7f0e4;
     }
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
@@ -22,12 +23,12 @@
       font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
       color: var(--ink);
       background: var(--bg);
-      line-height: 1.5;
+      line-height: 1.55;
     }
     header {
       max-width: 920px;
       margin: 0 auto;
-      padding: 2.5rem 1.25rem 1.5rem;
+      padding: 2.5rem 1.25rem 1.25rem;
     }
     header h1 {
       font-size: clamp(1.6rem, 4vw, 2.25rem);
@@ -38,7 +39,7 @@
     header .sub {
       color: var(--muted);
       font-size: 1.05rem;
-      max-width: 40rem;
+      max-width: 42rem;
       margin: 0;
     }
     .meta {
@@ -87,7 +88,61 @@
       padding: 1.5rem 1.25rem 4rem;
       display: flex;
       flex-direction: column;
-      gap: 2.5rem;
+      gap: 2.25rem;
+    }
+    .panel {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 1px 2px rgba(26, 31, 36, 0.04);
+    }
+    .panel .panel-head {
+      padding: 1rem 1.15rem 0.85rem;
+      border-bottom: 1px solid var(--line);
+      font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
+    }
+    .panel .panel-head h2 {
+      margin: 0 0 0.25rem;
+      font-size: 1.15rem;
+      font-weight: 650;
+      letter-spacing: -0.01em;
+      font-family: inherit;
+    }
+    .panel .panel-head p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+    .compare-gif {
+      display: block;
+      width: 100%;
+      height: auto;
+      background: #111;
+    }
+    .takeaways {
+      padding: 1.1rem 1.25rem 1.35rem;
+      font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
+      font-size: 0.95rem;
+    }
+    .takeaways .verdict {
+      font-size: 1.05rem;
+      font-weight: 650;
+      margin: 0 0 0.75rem;
+      color: var(--accent);
+    }
+    .takeaways ul {
+      margin: 0;
+      padding-left: 1.15rem;
+    }
+    .takeaways li { margin: 0.45rem 0; }
+    .takeaways .caveat {
+      margin: 1rem 0 0;
+      padding: 0.75rem 0.9rem;
+      background: var(--warn-bg);
+      border-radius: 8px;
+      font-size: 0.85rem;
+      color: var(--muted);
     }
     article.frame {
       background: var(--card);
@@ -123,15 +178,11 @@
       font-size: 0.85rem;
       color: var(--muted);
     }
-    article.frame a.img-wrap {
-      display: block;
-      background: #111;
-    }
+    article.frame a.img-wrap { display: block; background: #111; }
     article.frame img {
       display: block;
       width: 100%;
       height: auto;
-      vertical-align: middle;
     }
     footer {
       max-width: 920px;
@@ -141,7 +192,7 @@
       font-size: 0.8rem;
       color: var(--muted);
     }
-    footer p { margin: 0 0 0.5rem; max-width: 40rem; }
+    footer p { margin: 0 0 0.5rem; max-width: 42rem; }
   </style>
 </head>
 <body>
@@ -150,13 +201,15 @@
     <p class="sub">Vertical Google Earth Pro historical imagery of 233 Solstice, The Sea Ranch, CA 95497. Same framing and scale across years so the cliff edge can be compared against the house and fixed features (roads, Bluff Trail, neighboring roofs).</p>
     <div class="meta">
       <span><strong>View</strong> top-down · eye alt 290&nbsp;m</span>
-      <span><strong>Scale</strong> 64&nbsp;m bar on every frame</span>
+      <span><strong>Scale</strong> 64&nbsp;m bar on every still</span>
       <span><strong>Source</strong> Google Earth Pro Historical Imagery</span>
     </div>
   </header>
 
-  <nav class="years" aria-label="Jump to year">
+  <nav class="years" aria-label="Jump to section">
     <ul>
+      <li><a href="#compare">Year flip</a></li>
+      <li><a href="#takeaways">Takeaways</a></li>
       <li><a href="#y1993">1993</a></li>
       <li><a href="#y2004">2004</a></li>
       <li><a href="#y2010">2010</a></li>
@@ -167,12 +220,38 @@
   </nav>
 
   <main>
+    <section class="panel" id="compare">
+      <div class="panel-head">
+        <h2>Year-to-year flip</h2>
+        <p>Loops 1993 → 2004 → 2010 → 2015 → 2021 → 2024 so the bluff edge and house line up in the same crop. Watch the strip between the buildings and the cliff.</p>
+      </div>
+      <img class="compare-gif" src="images/year-compare.gif" alt="Animated comparison of 233 Solstice aerial imagery cycling through 1993, 2004, 2010, 2015, 2021, and 2024" width="800" height="551" />
+    </section>
+
+    <section class="panel" id="takeaways">
+      <div class="panel-head">
+        <h2>Takeaways (visual read)</h2>
+        <p>Not a survey — a plain-language look at these frames only.</p>
+      </div>
+      <div class="takeaways">
+        <p class="verdict">Not obviously alarming at this zoom: the bluff does not look like it has raced inland toward the house between 2004 and 2024.</p>
+        <ul>
+          <li><strong>1993</strong> is before the house (listing year built: 2004). Useful for the natural shoreline shape, not for setback to a building.</li>
+          <li>From <strong>2004 through 2024</strong>, Bluff Trail still runs between the 233 Solstice cluster and the rocky drop to the ocean. The cliff edge stays on the ocean side of that trail in every color frame.</li>
+          <li>There is no clear “the cliff ate the house lots” jump at Google Earth resolution. Vegetation and lawn between the roofs and the edge change year to year (trees grow or thin; grass color shifts), which can fool the eye more than a true edge move.</li>
+          <li>The homes sit close to an active ocean bluff — normal Sea Ranch risk — but these images alone do not show rapid multi-decade recession into the building footprint.</li>
+          <li>Small retreat (a few feet per decade) would be hard to see here. The inspector’s stills-with-scale method is the right way to estimate feet.</li>
+        </ul>
+        <p class="caveat">This is a desk read of satellite/aerial tiles, not geologic or survey advice. Treat the inspector’s measured retreat (and any local geology report) as the authority if they differ from this impression.</p>
+      </div>
+    </section>
+
     <article class="frame" id="y1993">
       <div class="label">
         <h2>July 12, 1993</h2>
         <span class="date">Inspector target ~1993 / 1998</span>
       </div>
-      <p class="note">Earliest useful USGS black-and-white frame. House not yet built (listing year built: 2004).</p>
+      <p class="note">Earliest useful USGS black-and-white frame. House not yet built.</p>
       <a class="img-wrap" href="images/01-approx-1993-or-1998.png" target="_blank" rel="noopener">
         <img src="images/01-approx-1993-or-1998.png" alt="233 Solstice aerial, July 12 1993, vertical with 64 meter scale" loading="eager" />
       </a>
@@ -233,8 +312,8 @@
   </main>
 
   <footer>
-    <p>Prepared for comparing the exact bluff edge against fixed features at the house and estimating retreat in feet. Click any image for the full-resolution PNG.</p>
-    <p>Imagery © Google / USGS via Google Earth Pro. Page assembled Sep 25, 2026.</p>
+    <p>Prepared for comparing the exact bluff edge against fixed features at the house and estimating retreat in feet. Click any still for the full-resolution PNG.</p>
+    <p>Imagery © Google / USGS / Airbus via Google Earth Pro. Page updated Sep 25, 2026.</p>
   </footer>
 </body>
 </html>
